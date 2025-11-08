@@ -1,0 +1,100 @@
+:root{
+  --bg:#0c0f19; --bg-elev:#0f1322; --text:#e9eef7; --muted:#9aa3b2; --line:#1e2436;
+  --brand:#00bfe6; --pink:#ff3df0; --lime:#9dff3d; --violet:#7a5cff;
+}
+*{box-sizing:border-box} html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Noto Sans",Arial;line-height:1.65;overflow-x:hidden}
+.wrap{width:min(1100px,92%);margin:0 auto}
+a{color:var(--brand)} a:hover{text-decoration:underline}
+
+/* Canvas */
+#stars{position:fixed;inset:0;z-index:-1;display:none}
+
+/* Top Nav */
+.topnav{position:sticky;top:0;z-index:8;background:rgba(12,15,25,.75);backdrop-filter: blur(10px);border-bottom:1px solid var(--line)}
+.navrow{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{font-weight:800;font-size:1.1rem;padding:.9rem 0;letter-spacing:.2px}
+.menu{display:flex;gap:18px;list-style:none;margin:0;padding:0}
+.menu a{display:block;padding:1rem .5rem}
+.burger{display:none;flex-direction:column;gap:4px;background:transparent;border:1px solid var(--line);border-radius:8px;padding:6px 8px;color:var(--text)}
+.burger span{display:block;width:18px;height:2px;background:var(--text)}
+@media (max-width: 780px){
+  .burger{display:inline-flex}
+  .menu{position:absolute;right:12px;top:58px;background:var(--bg-elev);border:1px solid var(--line);border-radius:12px;display:none;flex-direction:column;min-width:180px}
+  .menu.open{display:flex}
+}
+
+/* Toggle */
+.theme-toggle{
+  position:fixed;top:12px;right:12px;z-index:10;display:inline-flex;align-items:center;gap:.6rem;
+  border:1px solid var(--line);background:var(--bg-elev);color:var(--text);border-radius:999px;padding:.45rem .75rem;cursor:pointer
+}
+.theme-toggle .label{font-size:.9rem}
+.theme-toggle .dot{width:10px;height:10px;border-radius:50%;background:var(--brand)}
+
+/* Hero */
+.masthead{border-bottom:1px solid var(--line);padding:46px 0 30px;background:linear-gradient(180deg,rgba(122,92,255,.10),transparent 40%)}
+.brand{font-size:clamp(28px,6vw,46px);margin:0 0 8px;font-weight:800;letter-spacing:.3px}
+.brand .pix{display:none}
+.tag{color:var(--muted);margin:0 0 18px}
+.hero .invaders{display:none}
+
+/* Sections + Grid */
+.section{padding:30px 0;border-top:1px solid var(--line)}
+.grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+
+/* Icon-first Card */
+.card{border:1px solid var(--line);border-radius:14px;background:var(--bg-elev);padding:18px 18px 16px;display:flex;flex-direction:column;gap:12px}
+.logo-slot{
+  width:64px;height:64px;border-radius:16px;display:grid;place-items:center;
+  background:linear-gradient(145deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+  border:1px solid rgba(255,255,255,.08);
+}
+.logo-slot img{max-width:70%;max-height:70%;object-fit:contain;filter: none}
+.logo-slot svg{width:32px;height:32px}
+.card h3{margin:0;font-size:1.1rem}
+.card p{margin:0;color:var(--muted)}
+.card .actions{margin-top:auto}
+.card .btn{display:inline-block;padding:.6rem .9rem;border-radius:10px;border:1px solid var(--line);background:transparent;color:var(--text);text-decoration:none}
+
+.footer{border-top:1px solid var(--line);padding:26px 0 44px;color:var(--muted);text-align:center}
+
+/* Hover / focus glow for cards — subtle lift and cyan glow, stronger in Pixel mode */
+.card{
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+  will-change: transform, box-shadow;
+  cursor:default;
+}
+.card:hover,
+.card:focus-within{
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 12px 28px rgba(0,230,255,0.12), 0 6px 18px rgba(0,0,0,0.18);
+}
+.card:focus{
+  outline: none;
+  box-shadow: 0 12px 28px rgba(0,230,255,0.16), 0 6px 18px rgba(0,0,0,0.2);
+}
+
+/* Stronger glow when user enabled Pixel mode */
+body.pixel .card:hover,
+body.pixel .card:focus-within{
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,230,255,0.28), 0 8px 28px rgba(0,0,0,0.22);
+  filter: drop-shadow(0 0 10px rgba(0,230,255,0.12));
+}
+
+/* Ensure logo images are centered and crisp */
+.card .logo-slot img{ display:block; width:100%; height:auto; object-fit:contain; }
+
+/* Pixel Mode */
+body.pixel{--brand:#00e6ff}
+body.pixel #stars{display:block}
+body.pixel .brand{font-family:"Press Start 2P",monospace;text-transform:uppercase;letter-spacing:1px}
+body.pixel .brand .pix{display:inline}
+body.pixel .masthead{background:linear-gradient(180deg,rgba(122,92,255,.18),transparent 40%)}
+body.pixel h1,h2,h3{ text-shadow: 0 0 3px rgba(255,255,255,.6), 0 0 14px var(--violet), 0 0 30px var(--pink) }
+body.pixel .logo-slot{ box-shadow: 0 0 0 1px rgba(0,230,255,.25), 0 10px 34px rgba(0,0,0,.35) }
+body.pixel .icon svg{ filter: drop-shadow(0 0 6px rgba(255,255,255,.85)) drop-shadow(0 0 22px rgba(0,230,255,.35)) }
+.hero .invaders img{width:48px;height:48px;image-rendering:pixelated;margin:0 6px;filter: drop-shadow(0 0 8px rgba(255,255,255,.25))}
+body.pixel .hero .invaders{display:flex;justify-content:center;margin-bottom:10px}
+

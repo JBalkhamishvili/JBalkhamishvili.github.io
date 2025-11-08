@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PixelTCG — WooCommerce Store — Case Study</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body class="clean">
+  <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme" aria-pressed="false"><span class="label">Pixel</span><span class="dot"></span></button>
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <nav class="topnav"><div class="wrap navrow"><a class="logo" href="../index.html">← Back</a><ul class="menu"><li><a href="../index.html#projects">Projects</a></li></ul></div></nav>
+  <header class="masthead"><div class="wrap"><h1 class="brand">PixelTCG — WooCommerce Store</h1><p class="tag">Lead WordPress developer (theme & plugin dev)</p><div class="badges"><span class='badge'>WordPress</span><span class='badge'>PHP</span><span class='badge'>JS</span><span class='badge'>WooCommerce</span><span class='badge'>ACF</span></div></div></header>
+  <main class="wrap">
+    <figure class="hero-img"><img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1200&auto=format&fit=crop" alt="PixelTCG — WooCommerce Store hero"></figure>
+    <section class="section"><h2>Overview</h2><p>Pokémon TCG shop using a dark Astra child theme with custom category tiles, product blueprint pages, and automatic USD→GEL pricing via NBG API.</p></section>
+    <section class="section two-col">
+      <div><h3>Problems</h3><ul><li>Inconsistent product titles/meta</li><li>Manual GEL price updates</li><li>Slow LCP on category/landing templates</li></ul></div>
+      <div><h3>Actions</h3><ul><li>Blueprint product template system for single-card pages</li><li>ACF USD field → GEL conversion hook (NBG API) feeding Woo price</li><li>Lazy-loaded sliders, trimmed plugins, improved image handling</li></ul></div>
+    </section>
+    <section class="section"><h3>Results</h3><ul class="results"><li><strong>LCP:</strong> ↓ ~4.5s → ~2.3s on key templates</li><li><strong>Admin time:</strong> ↓ manual price work ≈90%</li><li><strong>SEO:</strong> cleaner slugs/titles across products</li></ul></section>
+  </main>
+  <footer class="footer"><div class="wrap"><p>© <span id="y"></span> Jaba Balkhamishvili</p></div></footer>
+  <script src="../assets/js/main.js"></script>
+</body></html>

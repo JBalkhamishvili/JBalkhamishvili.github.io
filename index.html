@@ -1,375 +1,79 @@
-<!DOCTYPE HTML>
-<!--
-	Hyperspace by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Portfolio - Balkhamishvili</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jaba Balkhamishvili — Web Developer</title>
+  <meta name="description" content="Portfolio of Jaba Balkhamishvili — WordPress, PHP, JavaScript. Clean & Pixel modes. Icon-first cards with logos.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="clean">
+  <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme" aria-pressed="false" title="Switch to Pixel Mode">
+    <span class="label">Pixel</span><span class="dot" aria-hidden="true"></span>
+  </button>
 
-		<!-- Sidebar -->
-			<section id="sidebar">
-				<div class="inner">
-					<nav>
-						<ul>
-							<li><a href="#intro">Welcome</a></li>
-							<li><a href="#one">About Me</a></li>
-							<li><a href="#two">Portfolio</a></li>
-							<li><a href="#three">Contact</a></li>
-						</ul>
-					</nav>
-				</div>
-			</section>
+  <canvas id="stars" aria-hidden="true"></canvas>
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+  <nav class="topnav" aria-label="Primary">
+    <div class="wrap navrow">
+      <a href="#home" class="logo"><span class="pix">Pixel</span>Jaba</a>
+      <button class="burger" aria-expanded="false" aria-controls="navmenu" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul id="navmenu" class="menu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#companies">Companies</a></li>
+        
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
 
-				<!-- Intro -->
-					<section id="intro" class="wrapper style1 fullscreen fade-up">
-						<div class="inner">
-							<h1>Jaba Balkhamishvili</h1>
-							<p>Hello and Welcome to my personal Developer Portfolio</p>
-							<ul class="actions">
-								<li><a href="#one" class="button scrolly">About me</a></li>
-							</ul>
-						</div>
-					</section>
+  <header id="home" class="masthead">
+    <div class="wrap hero">
+      <div class="invaders" aria-hidden="true">
+        <img src="assets/img/invader-cyan.svg" alt="">
+        <img src="assets/img/invader-pink.svg" alt="">
+        <img src="assets/img/invader-lime.svg" alt="">
+      </div>
+      <h1 class="brand"><span class="pix">Pixel</span>Jaba — Jaba Balkhamishvili</h1>
+      <p class="tag">Web Developer · WordPress · PHP · JavaScript</p>
+    </div>
+  </header>
 
-				<!-- One -->
-					<section id="one" class="wrapper style2 spotlights h100">
-						<section>
-							<a href="#" class="image"><img src="images/pic09.jpg" alt="" data-position="center center" /></a>
-							<div class="content">
-								<div class="inner">
-									<h2>About Me</h2>
-									<p>Hello, my name is Jaba Balkhamishvili. I'm a Web Developer born in Georgia and raised in Germany, where I learned and
-										Graduated 2019 as an IT specialist for application development. 
-										Since then I have tried to get better and develop more as a Developer. 
-										I can look back now at more then 3 years of experience. 
-										Over these years I managed to work and learn with 
-										PHP/Laravel, HTML/CSS, JavaScript, Vue.js, Wordpress, Rest APIs and more.</p>									<ul class="actions">
-										<li><a href="#two" class="button scrolly">My work experience</a></li>
-									</ul>
-								</div>
-							</div>
-						</section>
+  <main class="wrap">
+    <section id="about" class="section">
+      <h2>About</h2>
+      <p>I build fast, accessible WordPress & JavaScript experiences. Below are selected projects. Click any card to read a short case page. Logos are loaded from external URLs when available; otherwise a pixel placeholder is shown.</p>
+    </section>
 
-				<!-- Two -->
-					<section id="two" class="wrapper style3 fade-up">
-						<div class="inner">
-							<h2>My Portfolio</h2>
-							<p>Unfortunately I can not Share all my  Code that I work on during my projects. However, these are some of my Projects I was working on.</p>
+    <section id="companies" class="section">
+      <h2>Companies I worked for</h2>
+      <p>Click a company to see the projects I worked on there.</p>
+      <div class="grid" id="companyGrid" aria-live="polite"></div>
+    </section>
 
-							<h3>As a Freelancer</h3>
-							<h4>since Nov 2020</h4>
-							<div class="features">
-								<section>
-									<span class="icon solid major"><i class="fa-solid fa-palette"></i></span>
-									<h3>Eka Peradze Art</h3>
-									<p>My first Freelancer project, I build this Online Shop from scratch with WordPress.</p>							
-									<ul class="actions">
-										<li><a target="_blank" href="https://ekaperadzeart.com/" class="button">Learn more</a></li>
-									</ul>	
-								</section>
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <p>Email <a href="mailto:hello@pixeljaba.dev">hello@pixeljaba.dev</a></p>
+      <div class="socials">
+        <a class="icon" href="https://github.com/JBalkhamishvili" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 16 16" role="img" width="28" height="28"><path fill="#fff" d="M8 0C3.58 0 0 3.64 0 8.13c0 3.59 2.29 6.63 5.47 7.7.4.08.55-.18.55-.39 0-.19-.01-.82-.01-1.49-2 0-2.53-.5-2.69-.95-.09-.24-.48-.95-.82-1.14-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.53.28-.87.5-1.07-1.78-.2-3.64-.91-3.64-4.06 0-.9.31-1.63.82-2.21-.08-.2-.36-1.01.08-2.1 0 0 .67-.22 2.2.84.63-.18 1.31-.27 1.99-.27.68 0 1.36.09 1.99.27 1.53-1.06 2.2-.84 2.2-.84.44 1.09.16 1.9.08 2.1.51.58.82 1.31.82 2.21 0 3.16-1.87 3.86-3.65 4.06.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.19 0 .21.15.47.55.39A8.038 8.038 0 0 0 16 8.13C16 3.64 12.42 0 8 0Z"/></svg>
+        </a>
+        <a class="icon" href="#" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 448 512" role="img" width="28" height="28"><path fill="#fff" d="M100.28 448H7.4V148.9h92.88zm-46.44-338C24.1 110 0 85.9 0 56.7 0 27.5 24.1 3.4 53.84 3.4c29.74 0 53.84 24.1 53.84 53.3 0 29.2-24.1 53.3-53.84 53.3zM447.9 448h-92.4V302.4c0-34.7-.7-79.3-48.34-79.3-48.34 0-55.74 37.7-55.74 76.6V448h-92.5V148.9h88.8v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z"/></svg>
+        </a>
+      </div>
+    </section>
+  </main>
 
-								<section>
-									<span class="icon solid major"><i class="fa-solid fa-palette"></i></span>
-									<h3>Eka Peradze Art Second Shop</h3>
-									<p>A Second Shop for the Artist Eka Peradze.</p>
-									<ul class="actions">
-										<li><a target="_blank" href="https://ek-art-shop.com/" class="button">Learn more</a></li>
-									</ul>
-								</section>
+  <footer class="footer">
+    <div class="wrap">
+      <p>© <span id="y"></span> Jaba Balkhamishvili · <a href="#" id="toTop">Back to top</a></p>
+    </div>
+  </footer>
 
-								<section>
-									<span class="icon solid major"><i class="fa-solid fa-chair"></i></span>
-									<h3>Burkhart</h3>
-									<p>I Build this Online Shop from scratch with WordPress in one of my Freelancer Projects.</p>
-									<p>update 2023 - unfortunatly the customer closed his Online Shop </p>
-								</section>									
-								<section>
-									<span class="icon solid major"><i class="fa-solid fa-globe-americas"></i></span>
-									<h3>Novo Peak</h3>
-									<p>I build this Website based on WordPress. </p>
-									<p>Update 2023: The project is on hold for restructure </p>
-									<ul class="actions">
-										<li><a target="_blank" href="https://novo-peak.international/" class="button">Learn more</a></li>
-									</ul>
-								</section>
-
-								<section>
-									<span class="icon solid major"><i class="fa-solid fa-user-doctor"></i></span>
-									<h3>Handchirurgie Abel</h3>
-									<p>I helped building this Website based on Wordpress</p>
-									<ul class="actions">
-										<li><a target="_blank" href="https://www.handchirurgie-abel.de/" class="button">Learn more</a></li>
-									</ul>
-								</section>
-
-								<section>
-									<span class="icon solid major"><i class="fa-solid fa-industry"></i></span>
-									<h3>Hoffmann</h3>
-									<p>I helped building this Website based on Wordpress for the Hoffmann Piping and More GmbH</p>
-									<ul class="actions">
-										<li><a target="_blank" href="http://hoffmann-grp.de/" class="button">Learn more</a></li>
-									</ul>
-								</section>
-
-								<section>
-									<span class="icon solid major"><i class="fa-solid fa-cloud"></i></span>
-									<h3>Valuniq</h3>
-									<p>For this WordPress Project, I was involved working and moving his website to Wordpress</p>
-									<ul class="actions">
-										<li><a target="_blank" href="https://www.valuniq.de/" class="button">Learn more</a></li>
-									</ul>
-								</section>
-
-								<section>
-
-								</section>
-							</div>
-
-							<h3>MONOBUNT Digitalagentur </h3>
-							<h4>2023 - Present</h4>
-							<p>I work here as a freelance web developer, providing WordPress project support and developing applications for Freshworks.</p>
-							<div class="features">
-								<section>
-									<span class="icon solid major"><i class="fa-solid fa-person-skiing"></i></span>
-									<h3>Hagan Ski</h3>
-									<p>For this WordPress Project, I was involved working in the Back End Team</p>
-									<ul class="actions">
-										<li><a target="_blank" href="https://hagan-ski.com/" class="button">Learn more</a></li>
-									</ul>
-								</section>
-								<section>
-									<span class="icon solid major"><i class="fa-solid fa-futbol"></i></span>
-									<h3>Vereinsmeister</h3>
-									<p>For this WordPress Project, I was involved working in the Back End Team</p>
-									<ul class="actions">
-										<li><a target="_blank" href="https://www.vereinsmeister.com/" class="button">Learn more</a></li>
-									</ul>
-								</section>
-								<section>
-									<span class="icon solid major"><i class="fa-solid fa-leaf"></i></span>
-									<h3>Apofit</h3>
-									<p>For this WordPress Project, I was involved working in the Back End Team and creating futures for the customer</p>
-									<ul class="actions">
-										<li><a target="_blank" href="https://www.apofit.at/" class="button">Learn more</a></li>
-									</ul>
-								</section>
-								<section>
-								</section>
-							</div>
-
-							<h3>Tipalti</h3>
-							<h4>2023 - Present</h4>
-							<p>Working in the Backend Team for Tipalti</p>
-							<div class="features">
-								<section>
-									<span class="icon solid major"><i class="fa-brands fa-wordpress"></i></span>
-									<h3>Tipalti</h3>
-									<p>Work on Tipalti Website, creating gutenberg blocks, shortcodes and refactor code</p>
-									<ul class="actions">
-										<li><a target="_blank" href="https://tipalti.com/" class="button">Learn more</a></li>
-									</ul>
-								</section>
-								<section></section>
-							</div>
-
-							<h3>Flatrock Technology</h3>
-							<h4>2021 - 2023</h4>
-							<p>I was involved in these Projects at Flatrock Technology</p>
-							<div class="features">
-								<section>
-									<span class="icon solid major"><i class="fa-brands fa-laravel"></i></span>
-									<h3>Marshal</h3>
-									<p>The Marshal project, is a project for HR's where I developed some components with Laravel & Vue.js</p>
-									<ul class="actions">
-										<li><a target="_blank" href="https://marshalhr.com/" class="button">Learn more</a></li>
-									</ul>								
-								</section>
-								<section>
-									<span class="icon solid major"><i class="fa-brands fa-magento"></i></span>
-									<h3>Brompton Bikes </h3>
-									<p>For this project I was involved in the Magento Team Backend Development</p>
-									<ul class="actions">
-										<li><a target="_blank" href="https://www.brompton.com/" class="button">Learn more</a></li>
-									</ul>								
-								</section>
-								<section>
-									<span class="icon solid major"><i class="fa-brands fa-laravel"></i></span>
-									<h3>Inventory Tool Laravel/Orchid</h3>
-									<p>For this Laravel Inventory System project I was the Tech Lead, it is Based on Laravel and Laravel/Orchid</p>
-								</section>
-								<section>
-									<span class="icon solid major"><i class="fa-brands fa-wordpress"></i></span>
-									<h3>Purify Digital</h3>
-									<p>For this WordPress Project, I was involved as the Tech Lead and was also working on the Back End</p>
-									<ul class="actions">
-										<li><a target="_blank" href="https://www.purifydigital.com/" class="button">Learn more</a></li>
-									</ul>								
-								</section>
-								<section>
-									<span class="icon solid major"><i class="fa-brands fa-wordpress"></i></span>
-									<h3>Flat rock Outsourcing</h3>
-									<p>For this WordPress Project, I was involved as the Tech Lead and was also working on the Back End</p>
-									<ul class="actions">
-										<li><a target="_blank" href="https://flatrockoutsourcing.com/" class="button">Learn more</a></li>
-									</ul>								
-								</section>
-								<section>
-									<span class="icon solid major"><i class="fa-brands fa-wordpress"></i></span>
-									<h3>Maison Chase</h3>
-									<p>For this WordPress Project, I was involved working on the Back End</p>
-									<ul class="actions">
-										<li><a target="_blank" href="https://maisonchase.co.uk/" class="button">Learn more</a></li>
-									</ul>
-								</section>
-								<section>
-									<span class="icon solid major"><i class="fa-brands fa-wordpress"></i></span>
-									<h3>GPT Tips</h3>
-									<p>For this WordPress Project, I was involved working on the Back End</p>
-									<ul class="actions">
-										<li><a target="_blank" href="https://gpt-tips.ai/" class="button">Learn more</a></li>
-									</ul>
-								</section>
-								<section>
-									<span class="icon solid major"><i class="fa-brands fa-wordpress"></i></span>
-									<h3>App Tipps</h3>
-									<p>For this WordPress Project, I was involved working on the Back End</p>
-									<ul class="actions">
-										<li><a target="_blank" href="https://app-tipps.com/" class="button">Learn more</a></li>
-									</ul>
-								</section>
-							</div>
-
-
-							<h3>Subtel - Oxid eShop</h3>
-							<h4>2019 - 2020</h4>
-							<div class="features">
-								<section>
-									<span class="icon solid major"><i class="fa-solid fa-battery-full"></i></span>
-									<h3>subtel</h3>
-									<p>At subtel GmbH, I worked as a Full Stack Web Developer on there Online Shop, which is based on the Oxid eShop written in PHP.</p>
-									<ul class="actions">
-										<li><a target="_blank" href="https://www.subtel.de/" class="button">Learn more</a></li>
-									</ul>
-								</section>
-								<section></section>
-							</div>
-
-							<h3>Code which I can share</h3>
-							<div class="features">
-								<section>
-									<span class="icon solid major"><i class="fa-brands fa-wordpress"></i></span>
-									<h3>Tipalti Coding Test</h3>
-									<p>Here i had a Coding Test for Tipalti which they gave me before recruiting me to solve this.</p>
-									<ul class="actions">
-										<li><a target="_blank" href="https://github.com/JBalkhamishvili/tipalti_coding_test" class="button">See on Github</a></li>
-									</ul>
-								</section>
-
-								<section>
-									<span class="icon solid major"><i class="fa-solid fa-blog"></i></span>
-									<h3>Blog from Scratch</h3>
-									<p>For training, I build this Blog from scratch with PHP, MySql</p>
-									<ul class="actions">
-										<li><a target="_blank" href="https://github.com/JBalkhamishvili/PHP_Blog" class="button">See on Github</a></li>
-									</ul>
-								</section>
-								<section>
-									<span class="icon solid major"><i class="fa-brands fa-laravel"></i></span>
-									<h3>Blog with Laravel</h3>
-									<p>Here i Build the same Blog with the Laravel Framework</p>
-									<ul class="actions">
-										<li><a target="_blank" href="https://github.com/JBalkhamishvili/Laravel_Blog" class="button">See on Github</a></li>
-									</ul>
-								</section>
-								<section>				
-									<span class="icon solid major"><i class="fa-brands fa-vuejs"></i> </span>
-									<h3>Blog with Laravel and Vue.js</h3>
-									<p>Here i Build the same Blog with the Laravel Framework for Backend and Vue.js for Frontend</p>
-									<ul class="actions">
-										<li><a target="_blank" href="https://github.com/JBalkhamishvili/BlogWithVue" class="button">See on Github</a></li>
-									</ul>
-								</section>
-
-								<section>
-									<span class="icon solid major"><i class="fa-solid fa-diagram-project"></i></span>
-									<h3>Group Project during Training Frontend</h3>
-									<p>This was a Group Project to Build an Inventory System, for the frontend we used Vue.js</p>
-									<ul class="actions">
-										<li><a target="_blank" href="https://github.com/JBalkhamishvili/Inventory_WebApp" class="button">See on Github</a></li>
-									</ul>
-								</section>
-								<section>
-									<span class="icon solid major"><i class="fa-solid fa-diagram-project"></i></span>
-									<h3>Group Project during Training Backend</h3>
-									<p>This was a Group Project to Build an Inventory System, for the backend we used the Laravel Framework</p>
-									<ul class="actions">
-										<li><a target="_blank" href="https://github.com/JBalkhamishvili/inventory_Backend" class="button">See on Github</a></li>
-									</ul>
-								</section>
-							</div>
-							<ul class="actions">
-								<li><a href="#three" class="button scrolly" style="text-align: center;">How to contact me</a></li>
-							</ul>
-						</div>
-					</section>
-
-				<!-- Three -->
-					<section id="three" class="wrapper style1 fade-up">
-						<div class="inner">
-							<h2>Get in touch</h2>
-							<p>You can get in touch with me over my Email or over the following Social Networks</p>
-							<div class="split style1">
-						
-								<section>
-									<ul class="contact">
-										<li>
-											<h3>Email</h3>
-											<a href="mailto:j.balkhamishvili@gmail.com">j.balkhamishvili@gmail.com</a>
-										</li>
-										<li>
-											<h3>Social</h3>
-											<ul class="icons">
-												<li><a target="_blank" href="https://github.com/JBalkhamishvili" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-												<li><a target="_blank" href="https://www.linkedin.com/in/jumber-balkhamishvili/" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-											</ul>
-										</li>
-									</ul>
-								</section>
-							</div>
-						</div>
-					</section>
-
-			</div>
-
-		<!-- Footer -->
-			<footer id="footer" class="wrapper style1-alt">
-				<div class="inner">
-					<ul class="menu">
-						<li>&copy; Jumber Balkhamishvili.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-					</ul>
-				</div>
-			</footer>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
-	</body>
+  <script src="assets/js/main.js"></script>
+</body>
 </html>

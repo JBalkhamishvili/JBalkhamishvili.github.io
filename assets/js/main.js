@@ -1,190 +1,156 @@
-/*
-	Hyperspace by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
+// Theme toggle, burger, icon-first grid, starfield, year/back-to-top
+const toggle = document.getElementById('themeToggle');
+const root = document.body;
+const key = 'pj-theme';
 
-(function($) {
+function setTheme(name){
+  root.classList.remove('clean','pixel');
+  root.classList.add(name);
+  // Only touch the toggle UI if it exists on the page
+  if(toggle){
+    toggle.setAttribute('aria-pressed', name==='pixel' ? 'true' : 'false');
+    toggle.title = name==='pixel' ? 'Switch to Clean Mode' : 'Switch to Pixel Mode';
+    const label = toggle.querySelector('.label'); if(label) label.textContent = name==='pixel' ? 'Clean' : 'Pixel';
+  }
+  try{ localStorage.setItem(key, name); }catch(e){ /* ignore storage errors */ }
+}
 
-	var	$window = $(window),
-		$body = $('body'),
-		$sidebar = $('#sidebar');
+// Apply stored theme; default to 'clean'
+setTheme(localStorage.getItem(key) || 'clean');
+if(toggle) toggle.addEventListener('click', ()=> setTheme(root.classList.contains('pixel') ? 'clean' : 'pixel'));
 
-	// Breakpoints.
-		breakpoints({
-			xlarge:   [ '1281px',  '1680px' ],
-			large:    [ '981px',   '1280px' ],
-			medium:   [ '737px',   '980px'  ],
-			small:    [ '481px',   '736px'  ],
-			xsmall:   [ null,      '480px'  ]
-		});
+// Burger (guarded)
+const burger = document.querySelector('.burger');
+const menu = document.getElementById('navmenu');
+if(burger && menu){
+  burger.addEventListener('click', ()=>{ const open = menu.classList.toggle('open'); burger.setAttribute('aria-expanded', open ? 'true' : 'false'); });
+}
 
-	// Hack: Enable IE flexbox workarounds.
-		if (browser.name == 'ie')
-			$body.addClass('is-ie');
+// Year & back-to-top
+document.getElementById('y') && (document.getElementById('y').textContent = new Date().getFullYear());
+document.getElementById('toTop')?.addEventListener('click', e=>{ e.preventDefault(); scrollTo({top:0,behavior:'smooth'}); });
 
-	// Play initial animations on page load.
-		$window.on('load', function() {
-			window.setTimeout(function() {
-				$body.removeClass('is-preload');
-			}, 100);
-		});
+// Placeholder SVG (data URI, pixel grid + invader)
+const placeholderSVG = encodeURIComponent(`
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'>
+  <defs>
+    <linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>
+      <stop offset='0' stop-color='#1a1f35'/><stop offset='1' stop-color='#0f1322'/>
+    </linearGradient>
+  </defs>
+  <rect width='128' height='128' rx='16' fill='url(#g)'/>
+  <g fill='#1f2a48'>
+    ${Array.from({length: 16}).map((_,i)=> `<rect x='${(i%8)*16+4}' y='${Math.floor(i/8)*16+4}' width='8' height='8'/>`).join('')}
+  </g>
+  <g transform='translate(40,36)' fill='#00e6ff'>
+    <rect x='8' y='0' width='8' height='8'/><rect x='32' y='0' width='8' height='8'/>
+    <rect x='0' y='8' width='16' height='8'/><rect x='32' y='8' width='16' height='8'/>
+    <rect x='-8' y='16' width='80' height='8'/>
+    <rect x='0' y='24' width='8' height='8'/><rect x='24' y='24' width='16' height='8'/><rect x='48' y='24' width='8' height='8'/>
+    <rect x='0' y='32' width='8' height='8'/><rect x='48' y='32' width='8' height='8'/>
+    <rect x='24' y='40' width='16' height='8'/>
+  </g>
+</svg>`);
 
-	// Forms.
+// Companies + projects mapping (taken from the older index layout).
+const companies = [
+  {
+    slug: 'freelancer',
+    name: 'Freelancer',
+    blurb: 'Freelance projects since Nov 2020',
+    href: 'pages/company-freelancer.html',
+    projects: [
+      { title: 'PixelTCG — Pokémon TCG Store', href: 'pages/case-pixeltcg.html' },
+      { title: 'Eka Peradze Art', href: 'pages/project-eka.html' },
+      { title: 'Eka Peradze Art — Second Shop', href: 'pages/project-eka2.html' },
+      { title: 'Burkhart', href: 'pages/project-burkhart.html' },
+      { title: 'Novo Peak', href: 'pages/project-novo.html' },
+      { title: 'Handchirurgie Abel', href: 'pages/project-abel.html' },
+      { title: 'Hoffmann', href: 'pages/project-hoffmann.html' },
+      { title: 'Valuniq', href: 'pages/project-valuniq.html' }
+    ]
+  },
+  {
+    slug: 'monobunt',
+    name: 'MONOBUNT Digitalagentur',
+    blurb: 'Agency work — WordPress & Freshworks apps (2023–present)',
+    href: 'pages/company-monobunt.html',
+    logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/monobunt-logo.webp',
+    projects: [
+      { title: 'Hagan Ski', href: 'pages/project-hagan.html' },
+      { title: 'Vereinsmeister', href: 'https://www.vereinsmeister.com/' },
+      { title: 'Apofit', href: 'https://www.apofit.at/' },
+      { title: 'Test', href: 'jaba.test' }
+    ]
+  },
+  {
+    slug: 'tipalti',
+    name: 'Tipalti',
+    blurb: 'Backend work (2023–present)',
+    href: 'pages/company-tipalti.html',
+    projects: [
+      { title: 'Tipalti (website)', href: 'https://tipalti.com/' }
+    ]
+  },
+  {
+    slug: 'flatrock',
+    name: 'Flatrock Technology',
+    blurb: 'Projects 2021–2023 (Laravel, WordPress)',
+    href: 'pages/company-flatrock.html',
+    projects: [
+      { title: 'Marshal', href: 'https://marshalhr.com/' },
+      { title: 'Brompton Bikes', href: 'https://www.brompton.com/' },
+      { title: 'Inventory Tool (Laravel/Orchid)', href: '#' },
+      { title: 'Purify Digital', href: 'https://www.purifydigital.com/' },
+      { title: 'Flat rock Outsourcing', href: 'https://flatrockoutsourcing.com/' },
+      { title: 'Maison Chase', href: 'https://maisonchase.co.uk/' },
+      { title: 'GPT Tips', href: 'https://gpt-tips.ai/' },
+      { title: 'App Tipps', href: 'https://app-tipps.com/' }
+    ]
+  },
+  {
+    slug: 'subtel',
+    name: 'subtel',
+    blurb: 'OXID eShop work (2019–2020)',
+    href: 'pages/company-subtel.html',
+    projects: [
+      { title: 'subtel.de', href: 'https://www.subtel.de/' }
+    ]
+  }
+];
 
-		// Hack: Activate non-input submits.
-			$('form').on('click', '.submit', function(event) {
+// Render company cards into `companyGrid`.
+const companyGrid = document.getElementById('companyGrid');
+if(companyGrid){
+  companyGrid.innerHTML = companies.map(c=>{
+    const logoSrc = c.logo ? c.logo : `data:image/svg+xml,${placeholderSVG}`;
+    const logoAlt = c.logo ? `${c.name} logo` : '';
+    return `
+    <article class="card">
+      <div class="logo-slot"><img alt="${logoAlt}" src="${logoSrc}"></div>
+      <h3>${c.name}</h3>
+      <p>${c.blurb}</p>
+      <div class="actions"><a class="btn" href="${c.href}">Learn More</a></div>
+    </article>
+    `;
+  }).join('');
+}
 
-				// Stop propagation, default.
-					event.stopPropagation();
-					event.preventDefault();
-
-				// Submit form.
-					$(this).parents('form').submit();
-
-			});
-
-	// Sidebar.
-		if ($sidebar.length > 0) {
-
-			var $sidebar_a = $sidebar.find('a');
-
-			$sidebar_a
-				.addClass('scrolly')
-				.on('click', function() {
-
-					var $this = $(this);
-
-					// External link? Bail.
-						if ($this.attr('href').charAt(0) != '#')
-							return;
-
-					// Deactivate all links.
-						$sidebar_a.removeClass('active');
-
-					// Activate link *and* lock it (so Scrollex doesn't try to activate other links as we're scrolling to this one's section).
-						$this
-							.addClass('active')
-							.addClass('active-locked');
-
-				})
-				.each(function() {
-
-					var	$this = $(this),
-						id = $this.attr('href'),
-						$section = $(id);
-
-					// No section for this link? Bail.
-						if ($section.length < 1)
-							return;
-
-					// Scrollex.
-						$section.scrollex({
-							mode: 'middle',
-							top: '-20vh',
-							bottom: '-20vh',
-							initialize: function() {
-
-								// Deactivate section.
-									$section.addClass('inactive');
-
-							},
-							enter: function() {
-
-								// Activate section.
-									$section.removeClass('inactive');
-
-								// No locked links? Deactivate all links and activate this section's one.
-									if ($sidebar_a.filter('.active-locked').length == 0) {
-
-										$sidebar_a.removeClass('active');
-										$this.addClass('active');
-
-									}
-
-								// Otherwise, if this section's link is the one that's locked, unlock it.
-									else if ($this.hasClass('active-locked'))
-										$this.removeClass('active-locked');
-
-							}
-						});
-
-				});
-
-		}
-
-	// Scrolly.
-		$('.scrolly').scrolly({
-			speed: 1000,
-			offset: function() {
-
-				// If <=large, >small, and sidebar is present, use its height as the offset.
-					if (breakpoints.active('<=large')
-					&&	!breakpoints.active('<=small')
-					&&	$sidebar.length > 0)
-						return $sidebar.height();
-
-				return 0;
-
-			}
-		});
-
-	// Spotlights.
-		$('.spotlights > section')
-			.scrollex({
-				mode: 'middle',
-				top: '-10vh',
-				bottom: '-10vh',
-				initialize: function() {
-
-					// Deactivate section.
-						$(this).addClass('inactive');
-
-				},
-				enter: function() {
-
-					// Activate section.
-						$(this).removeClass('inactive');
-
-				}
-			})
-			.each(function() {
-
-				var	$this = $(this),
-					$image = $this.find('.image'),
-					$img = $image.find('img'),
-					x;
-
-				// Assign image.
-					$image.css('background-image', 'url(' + $img.attr('src') + ')');
-
-				// Set background position.
-					if (x = $img.data('position'))
-						$image.css('background-position', x);
-
-				// Hide <img>.
-					$img.hide();
-
-			});
-
-	// Features.
-		$('.features')
-			.scrollex({
-				mode: 'middle',
-				top: '-20vh',
-				bottom: '-20vh',
-				initialize: function() {
-
-					// Deactivate section.
-						$(this).addClass('inactive');
-
-				},
-				enter: function() {
-
-					// Activate section.
-						$(this).removeClass('inactive');
-
-				}
-			});
-
-})(jQuery);
+// Starfield (Pixel mode only) — only initialise when the canvas exists
+const canvas = document.getElementById('stars');
+let ctx = null;
+if(canvas){
+  ctx = canvas.getContext('2d');
+  function size(){ canvas.width = innerWidth; canvas.height = innerHeight; }
+  function loop(){
+    if(!document.body.classList.contains('pixel')){ ctx.clearRect(0,0,canvas.width,canvas.height); requestAnimationFrame(loop); return; }
+    const w = canvas.width, h = canvas.height; ctx.clearRect(0,0,w,h);
+    for(let i=0;i<Math.min(220, Math.floor(w/8)); i++){
+      const x=(Math.random()*w)|0, y=(Math.random()*h)|0, r=Math.random()*1.5+.2, a=Math.random()*.7+.2;
+      ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2);
+      ctx.fillStyle = `rgba(180,220,255,${a})`; ctx.shadowBlur = 14; ctx.shadowColor = 'rgba(0,230,255,.6)'; ctx.fill();
+    }
+    requestAnimationFrame(loop);
+  }
+  addEventListener('resize', size); size(); loop();
+}

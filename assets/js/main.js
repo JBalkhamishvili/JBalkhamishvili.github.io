@@ -123,14 +123,45 @@ const companies = [
   {
     slug: 'monobunt',
     name: 'MONOBUNT Digitalagentur',
-    blurb: 'Agency work — WordPress & Freshworks apps (2023–present)',
+    blurb: 'Full-Stack Developer (2023–present) — WordPress, Vue.js, Laravel & Freshworks Apps',
     href: 'pages/company-monobunt.html',
     logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/monobunt-logo.webp',
     projects: [
-      { title: 'Hagan Ski', href: 'pages/project-hagan.html' },
-      { title: 'Vereinsmeister', href: 'https://www.vereinsmeister.com/' },
-      { title: 'Apofit', href: 'https://www.apofit.at/' },
-      { title: 'Test', href: 'jaba.test' }
+      {
+        title: 'WordPress Client Portfolio',
+        blurb:
+            'Ongoing maintenance and Support, redesigns, custom blocks/plugins across multiple sites incl. Hagan Ski, DTF Transfer, Somni, Wein Quadrat, Apofit, 360 Studio, Die Fette Henne, Vereinsmeister and others.',
+        showCta: false,
+        logo: '<i class="fa-brands fa-wordpress"></i>'
+      },
+      {
+        title: 'DTF-Transfer – Custom Price Calculation Plugin',
+        href: 'https://dtf-transfer.at/',
+        blurb: 'Custom plugin that prices prints from uploaded images/PDFs by detecting dimensions and material usage.',
+        logo: 'dtf'
+      },
+      {
+        title: 'Freshworks Custom Apps',
+        blurb:
+            'Three internal Freshworks apps (confidential) built with Freshdesk FDK (HTML/JS + REST) to streamline support workflows.',
+        showCta: false,
+        logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/pngwing.com_.webp'
+      },
+      {
+        title: 'Lang Gruppe Provisions App',
+        href: 'https://prov.langgruppe.com/',
+        blurb:
+            'Standalone contract/customer management app with SyncSpider DataHub integration; Vue.js frontend with Laravel backend.',
+        logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/lang-gruppe.webp',
+        showCta: false
+      },
+      {
+        title: 'SyncSpider Hubs (Product/Inventory)',
+        blurb:
+            'Frontend development in Vue.js (with occasional Laravel) on B2B “Hubs” for data/asset management. Details confidential.',
+        showCta: false,
+        logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/syncspider_logo.webp'
+      },
     ]
   },
   {

@@ -106,18 +106,68 @@ const companies = [
   {
     slug: 'freelancer',
     name: 'Freelance & Personal Projects',
-    blurb: 'Freelance & Personal Projects since Nov 2020',
+    blurb:
+        'Freelance & personal work (Nov 2020–present).',
     href: 'pages/company-freelancer.html',
     logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/freelancer_logo.webp',
     projects: [
-      { title: 'PixelTCG — Pokémon TCG Store', href: 'pages/case-pixeltcg.html'},
-      { title: 'Eka Peradze Art', href: 'pages/project-eka.html' },
-      { title: 'Eka Peradze Art — Second Shop', href: 'pages/project-eka2.html' },
-      { title: 'Burkhart', href: 'pages/project-burkhart.html' },
-      { title: 'Novo Peak', href: 'pages/project-novo.html' },
-      { title: 'Handchirurgie Abel', href: 'pages/project-abel.html' },
-      { title: 'Hoffmann', href: 'pages/project-hoffmann.html' },
-      { title: 'Valuniq', href: 'pages/project-valuniq.html' }
+      {
+        title: 'PixelTCG — Pokémon TCG Store (Personal)',
+        href: 'pages/case-pixeltcg.html', // case page
+        // Optional: add a direct live link if your renderer supports it
+        live: 'https://pixeltcg.net/',
+        blurb:
+            'My own WooCommerce store built from zero with a custom Astra child theme. I handle everything: custom plugins (incl. ACF USD→GEL via NBG API), SEO (schema, metadata, internal linking), content creation, and performance tuning (fast Lighthouse scores). Goal: rank competitively on Google with clean UX and maintainable code.'
+        // CTA visible (default)
+      },
+      {
+        title: 'Private WordPress Plugins (Confidential)',
+        blurb:
+            'I design, build and market proprietary WordPress plugins used across client projects (details available on request). Focus on WooCommerce tooling, editor workflow improvements, and admin utilities.',
+        showCta: false
+      },
+      {
+        title: 'Eka Peradze Art',
+        blurb:
+            'Custom WordPress shop for an artist: theme work, editor workflows, and ongoing maintenance.',
+        showCta: false
+      },
+      {
+        title: 'Eka Peradze Art — Second Shop',
+        blurb:
+            'Parallel storefront with tailored catalog structure and content operations.',
+        showCta: false
+      },
+      {
+        title: 'Burkhart',
+        blurb:
+            'Freelance WordPress e-commerce build; custom templates and checkout adjustments.',
+        showCta: false
+      },
+      {
+        title: 'Novo Peak',
+        blurb:
+            'Corporate WordPress site—block-based templates, performance tuning, and SEO structure.',
+        showCta: false
+      },
+      {
+        title: 'Handchirurgie Abel',
+        blurb:
+            'Medical practice site: accessibility fixes, structured data, and content tooling.',
+        showCta: false
+      },
+      {
+        title: 'Hoffmann',
+        blurb:
+            'Company website on WordPress with custom blocks and editor-friendly components.',
+        showCta: false
+      },
+      {
+        title: 'Valuniq',
+        blurb:
+            'Finance site improvements: theme refinements, SEO metadata, and performance passes.',
+        showCta: false
+      }
     ]
   },
   {

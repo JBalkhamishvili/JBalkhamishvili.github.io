@@ -136,9 +136,7 @@ const companies = [
     projects: [
       {
         title: 'PixelTCG — Pokémon TCG Store (Personal)',
-        href: 'pages/case-pixeltcg.html', // case page
-        // Optional: add a direct live link if your renderer supports it
-        live: 'https://pixeltcg.net/',
+        href: 'https://pixeltcg.net/',
         blurb:
             'My own WooCommerce store built from zero with a custom Astra child theme. I handle everything: custom plugins (incl. ACF, USD→GEL via NBG API), SEO (schema, metadata, internal linking), content creation, cusotm gutenberg blocks and performance tuning (fast Lighthouse scores). Goal: rank competitively on Google with clean UX and maintainable code.',
         logo: 'https://pixeltcg.net/wp-content/uploads/2025/06/ChatGPT-Image-Jun-2-2025-07_30_59-PM.webp'
@@ -212,8 +210,8 @@ const companies = [
         title: 'WordPress Client Portfolio',
         blurb:
             'Ongoing maintenance and Support, redesigns, custom blocks/plugins across multiple sites incl. Hagan Ski, DTF Transfer, Somni, Wein Quadrat, Apofit, 360 Studio, Die Fette Henne, Vereinsmeister and others.',
-        showCta: false,
-        logo: '<i class="fa-brands fa-wordpress"></i>'
+        logo: '<i class="fa-brands fa-wordpress"></i>',
+        href: 'https://monobunt.at/'
       },
       {
         title: 'DTF-Transfer – Custom Price Calculation Plugin',

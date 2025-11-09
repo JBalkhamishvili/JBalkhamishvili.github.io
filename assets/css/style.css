@@ -42,7 +42,13 @@ a{color:var(--brand)} a:hover{text-decoration:underline}
   animation: pj-pulse 2.8s ease-in-out infinite;
 }
 @media (prefers-reduced-motion: reduce){ .theme-toggle{ animation: none; } }
-body.pixel .theme-toggle{ animation: pj-pulse 2s ease-in-out infinite; }
+/* Stronger pulse in Pixel mode (≈5–10% more pronounced via scale & shadow) */
+@keyframes pj-pulse-pixel {
+  0% { box-shadow: 0 0 0 0 rgba(0,230,255,0.0); transform: translateY(0) scale(1); }
+  50% { box-shadow: 0 0 13px 6.5px rgba(0,230,255,0.10); transform: translateY(-1px) scale(1.05); }
+  100% { box-shadow: 0 0 0 0 rgba(0,230,255,0.0); transform: translateY(0) scale(1); }
+}
+body.pixel .theme-toggle{ animation: pj-pulse-pixel 2s ease-in-out infinite; }
 
 /* Center the theme toggle on small screens so it doesn't overlap the burger/menu */
 @media (max-width: 780px){
@@ -62,8 +68,14 @@ body.pixel .theme-toggle{ animation: pj-pulse 2s ease-in-out infinite; }
 .tag{color:var(--muted);margin:0 0 18px}
 .hero .invaders{display:none}
 
-/* Headings: clean by default, pixel-mode adds the neon text-shadow */
-h1,h2,h3{ color:var(--text); text-shadow: none; }
+/* Headings: clean theme => white, no glow; pixel theme => pink + glow */
+body.clean h1,body.clean h2,body.clean h3,body.clean h4,body.clean h5,body.clean h6,
+h1,h2,h3,h4,h5,h6{color:var(--text);text-shadow:none;}
+body.pixel h1,body.pixel h2,body.pixel h3,body.pixel h4,body.pixel h5,body.pixel h6{
+  /* Revert to inherited text color (white) while keeping glow */
+  color:var(--text);
+  text-shadow:0 0 3px rgba(255,255,255,.6),0 0 14px var(--violet),0 0 30px var(--pink);
+}
 
 /* Sections + Grid */
 .section{padding:30px 0;border-top:1px solid var(--line)}
@@ -218,7 +230,7 @@ body.pixel #stars{display:block}
 body.pixel .brand{font-family:"Press Start 2P",monospace;text-transform:uppercase;letter-spacing:1px}
 body.pixel .brand .pix{display:inline}
 body.pixel .masthead{background:linear-gradient(180deg,rgba(122,92,255,.18),transparent 40%)}
-body.pixel h1,h2,h3{ text-shadow: 0 0 3px rgba(255,255,255,.6), 0 0 14px var(--violet), 0 0 30px var(--pink) }
+/* (Heading glow now covered earlier for all levels) */
 body.pixel .logo-slot{ box-shadow: 0 0 0 1px rgba(0,230,255,.25), 0 10px 34px rgba(0,0,0,.35) }
 body.pixel .icon svg{ filter: drop-shadow(0 0 6px rgba(255,255,255,.85)) drop-shadow(0 0 22px rgba(0,230,255,.35)) }
 .hero .invaders img{width:48px;height:48px;image-rendering:pixelated;margin:0 6px;filter: drop-shadow(0 0 8px rgba(255,255,255,.25))}

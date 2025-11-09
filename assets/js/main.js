@@ -15,8 +15,10 @@ function setTheme(name){
   try{ localStorage.setItem(key, name); }catch(e){ /* ignore storage errors */ }
 }
 
-// Apply stored theme; default to 'clean'
-setTheme(localStorage.getItem(key) || 'clean');
+// Force Clean theme on load (ignore any saved preference in localStorage).
+// This ensures the site always starts in Clean mode. The theme toggle will
+// still work during the session but will be overridden to Clean on the next load.
+setTheme('clean');
 if(toggle) toggle.addEventListener('click', ()=> setTheme(root.classList.contains('pixel') ? 'clean' : 'pixel'));
 
 // Burger (guarded)
@@ -117,56 +119,64 @@ const companies = [
         // Optional: add a direct live link if your renderer supports it
         live: 'https://pixeltcg.net/',
         blurb:
-            'My own WooCommerce store built from zero with a custom Astra child theme. I handle everything: custom plugins (incl. ACF USD→GEL via NBG API), SEO (schema, metadata, internal linking), content creation, and performance tuning (fast Lighthouse scores). Goal: rank competitively on Google with clean UX and maintainable code.'
-        // CTA visible (default)
+            'My own WooCommerce store built from zero with a custom Astra child theme. I handle everything: custom plugins (incl. ACF, USD→GEL via NBG API), SEO (schema, metadata, internal linking), content creation, cusotm gutenberg blocks and performance tuning (fast Lighthouse scores). Goal: rank competitively on Google with clean UX and maintainable code.',
+        logo: 'https://pixeltcg.net/wp-content/uploads/2025/06/ChatGPT-Image-Jun-2-2025-07_30_59-PM.webp'
       },
       {
         title: 'Private WordPress Plugins (Confidential)',
         blurb:
             'I design, build and market proprietary WordPress plugins used across client projects (details available on request). Focus on WooCommerce tooling, editor workflow improvements, and admin utilities.',
-        showCta: false
+        showCta: false,
+        logo: '<i class="fa-brands fa-wordpress"></i>'
       },
       {
         title: 'Eka Peradze Art',
         blurb:
             'Custom WordPress shop for an artist: theme work, editor workflows, and ongoing maintenance.',
-        showCta: false
+        showCta: false,
+        logo: '<i class="fa-brands fa-wordpress"></i>'
       },
       {
         title: 'Eka Peradze Art — Second Shop',
         blurb:
             'Parallel storefront with tailored catalog structure and content operations.',
-        showCta: false
+        showCta: false,
+        logo: '<i class="fa-brands fa-wordpress"></i>'
       },
       {
         title: 'Burkhart',
         blurb:
             'Freelance WordPress e-commerce build; custom templates and checkout adjustments.',
-        showCta: false
+        showCta: false,
+        logo: '<i class="fa-brands fa-wordpress"></i>'
       },
       {
         title: 'Novo Peak',
         blurb:
             'Corporate WordPress site—block-based templates, performance tuning, and SEO structure.',
-        showCta: false
+        showCta: false,
+        logo: '<i class="fa-brands fa-wordpress"></i>'
       },
       {
         title: 'Handchirurgie Abel',
         blurb:
             'Medical practice site: accessibility fixes, structured data, and content tooling.',
-        showCta: false
+        showCta: false,
+        logo: '<i class="fa-brands fa-wordpress"></i>'
       },
       {
         title: 'Hoffmann',
         blurb:
             'Company website on WordPress with custom blocks and editor-friendly components.',
-        showCta: false
+        showCta: false,
+        logo: '<i class="fa-brands fa-wordpress"></i>'
       },
       {
         title: 'Valuniq',
         blurb:
             'Finance site improvements: theme refinements, SEO metadata, and performance passes.',
-        showCta: false
+        showCta: false,
+        logo: '<i class="fa-brands fa-wordpress"></i>'
       }
     ]
   },

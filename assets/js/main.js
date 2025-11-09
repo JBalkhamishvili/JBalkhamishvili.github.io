@@ -54,12 +54,30 @@ const placeholderSVG = encodeURIComponent(`
 
 function resolveLogo(src){
   if(!src) return null;
-  // already absolute
-  if(/^https?:\/\//i.test(src) || src.startsWith('/')) return src;
+  // already absolute (http(s))
+  if(/^https?:\/\//i.test(src)) return src;
+
+  // Helper: when viewing files via file:// we need a relative path from
+  // the current document to the project root (assets live at the repo root).
+  // For simple project layout this handles pages in `/pages/` by prefixing
+  // one `../` when opened locally. When served over HTTP(S) we keep
+  // root-relative paths (leading slash) so GitHub Pages and similar hosts work.
+  function assetsPath(path){
+    if(location.protocol === 'file:'){
+      const rel = location.pathname.includes('/pages/') ? '../' : '';
+      return rel + path.replace(/^\//, '');
+    }
+    return path;
+  }
+
+  // root-relative input (explicit) -> convert to assets-aware path
+  if(src.startsWith('/')) return assetsPath(src);
+
   // short name without extension -> use .svg in logos folder
-  if(!src.includes('.')) return `/assets/img/logos/${src}.svg`;
+  if(!src.includes('.')) return assetsPath(`/assets/img/logos/${src}.svg`);
+
   // filename with extension but not root-relative -> prefix logos folder
-  return `/assets/img/logos/${src}`;
+  return assetsPath(`/assets/img/logos/${src}`);
 }
 
 // Companies + projects mapping (taken from the older index layout).
@@ -112,10 +130,10 @@ const companies = [
     logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/flatrock-logo.webp',
     projects: [
       { title: 'Marshal', href: 'https://marshalhr.com/' , logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/flatrock-logo.webp', },
-      { title: 'Brompton Bikes', href: 'https://www.brompton.com/' },
-      { title: 'Inventory Tool (Laravel/Orchid)', href: '#' },
-      { title: 'Purify Digital', href: 'https://www.purifydigital.com/' },
-      { title: 'Flat rock Outsourcing', href: 'https://flatrockoutsourcing.com/' },
+      { title: 'Brompton Bikes', href: 'https://www.brompton.com/', logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/Brompton_Logo_Triptych_Stacked_White_Screen.webp' },
+      { title: 'Inventory Tool (Laravel/Orchid)', href: '#', logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/inventory.webp' },
+      { title: 'Purify Digital', href: 'https://www.purifydigital.com/', logo: 'purify' },
+      { title: 'Flat rock Outsourcing', href: 'https://flatrockoutsourcing.com/', logo: 'flatsourcing' },
       { title: 'Maison Chase', href: 'https://maisonchase.co.uk/' },
       { title: 'GPT Tips', href: 'https://gpt-tips.ai/' },
       { title: 'App Tipps', href: 'https://app-tipps.com/' }

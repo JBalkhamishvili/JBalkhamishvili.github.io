@@ -59,6 +59,7 @@ const companies = [
     name: 'Freelancer',
     blurb: 'Freelance projects since Nov 2020',
     href: 'pages/company-freelancer.html',
+    logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/freelance-logo.webp',
     projects: [
       { title: 'PixelTCG — Pokémon TCG Store', href: 'pages/case-pixeltcg.html' },
       { title: 'Eka Peradze Art', href: 'pages/project-eka.html' },
@@ -86,8 +87,9 @@ const companies = [
   {
     slug: 'tipalti',
     name: 'Tipalti',
-    blurb: 'Backend work (2023–present)',
+    blurb: 'Backend work (2023–2025)',
     href: 'pages/company-tipalti.html',
+    logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/tipalti_logo_white.webp',
     projects: [
       { title: 'Tipalti (website)', href: 'https://tipalti.com/' }
     ]
@@ -97,6 +99,7 @@ const companies = [
     name: 'Flatrock Technology',
     blurb: 'Projects 2021–2023 (Laravel, WordPress)',
     href: 'pages/company-flatrock.html',
+    logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/flatrock-logo.webp',
     projects: [
       { title: 'Marshal', href: 'https://marshalhr.com/' },
       { title: 'Brompton Bikes', href: 'https://www.brompton.com/' },
@@ -113,6 +116,7 @@ const companies = [
     name: 'subtel',
     blurb: 'OXID eShop work (2019–2020)',
     href: 'pages/company-subtel.html',
+    logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/subtel-logo.webp',
     projects: [
       { title: 'subtel.de', href: 'https://www.subtel.de/' }
     ]

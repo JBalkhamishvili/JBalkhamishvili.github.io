@@ -157,6 +157,8 @@ body.pixel .pixel-cta{
 }
 .card a,
 .card button{ cursor: auto; }
+.card .actions a,
+.card .actions button{ cursor: pointer; }
 .card:hover,
 .card:focus-within{
   transform: translateY(-6px) scale(1.01);

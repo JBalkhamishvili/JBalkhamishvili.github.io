@@ -150,20 +150,20 @@ const companies = [
     href: 'pages/company-flatrock.html',
     logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/flatrock-logo.webp',
     projects: [
-      { title: 'Marshal', href: 'https://marshalhr.com/' , logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/flatrock-logo.webp', },
-      { title: 'Brompton Bikes', href: 'https://www.brompton.com/', logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/Brompton_Logo_Triptych_Stacked_White_Screen.webp' },
-      { title: 'Inventory Tool (Laravel/Orchid)', href: '#', logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/inventory.webp' },
-      { title: 'Purify Digital', href: 'https://www.purifydigital.com/', logo: 'purify' },
-    { title: 'Flat rock Outsourcing', href: 'https://flatrockoutsourcing.com/', logo: 'flatsourcing' },
-    { title: 'Maison Chase', href: 'https://maisonchase.co.uk/', logo: '<i class="fa-brands fa-wordpress"></i>' },
-      { title: 'GPT Tips', href: 'https://gpt-tips.ai/' },
-      { title: 'App Tipps', href: 'https://app-tipps.com/', blurb: 'A German-language site about AI apps', logo: '<i class="fa-brands fa-wordpress"></i>' }
+      { title: 'Marshal' , logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/laravel_vue.webp', blurb: "The Marshal project, was a project for HR's (some kind of LinkedIn clone) where I developed some components with Laravel & Vue.js", showCta: false },
+      { title: 'Brompton Bikes', href: 'https://www.brompton.com/', logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/Brompton_Logo_Triptych_Stacked_White_Screen.webp' , blurb: 'For this project I was involved in the Magento Team Backend Development'},
+      { title: 'Inventory Tool (Laravel/Orchid)', logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/Laravel.svg_-1.webp', blurb: 'For this Laravel Inventory System project I was the Tech Lead, it is Based on Laravel and Laravel/Orchid and is basically the inventory tool for the company to organize all tech equiment' },
+      { title: 'Purify Digital', href: 'https://www.purifydigital.com/', logo: 'purify', blurb: 'For this WordPress Project, I was involved as the Tech Lead and was also working on the Back End' },
+      { title: 'Flat rock Outsourcing', href: 'https://flatrockoutsourcing.com/', logo: 'flatsourcing', blurb: 'For this WordPress Project, I was involved as the Tech Lead and was also working on the Back End' },
+      { title: 'Maison Chase', href: 'https://maisonchase.co.uk/', logo: '<i class="fa-brands fa-wordpress"></i>', blurb: 'For this WordPress Project, I was involved working on the Back End, unfortunatly it looks like it was not continued after some years when i left', showCta: false  },
+      { title: 'GPT Tips', href: 'https://gpt-tips.ai/', logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/gpt-tips.webp', blurb: 'For this WordPress Project, I was involved working on the Back End' },
+      { title: 'App Tipps', href: 'https://app-tipps.com/', blurb: 'For this WordPress Project, I was involved working on the Back End', logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/app-tipps-logo-domain.webp' }
     ]
   },
   {
     slug: 'subtel',
-    name: 'subtel',
-    blurb: 'OXID eShop work (2019–2020)',
+    name: 'Subtel GmbH',
+    blurb: 'Online Shop based on OXID eShop - (2019–2020)',
     href: 'pages/company-subtel.html',
     logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/subtel-logo.webp',
     projects: [
@@ -205,9 +205,12 @@ if(companyGrid){
       const href = p.href || '#';
       const external = /^https?:\/\//i.test(href);
       const target = external ? ' target="_blank" rel="noopener"' : '';
-      const blurb = p.blurb ? `<p>${p.blurb}</p>` : '';
-      const cta = p.cta ? p.cta : (external ? 'Visit site' : 'Details');
-  return `\n        <article class="card" data-href="${href}" tabindex="0">\n          <div class="logo-slot">${logoInner}</div>\n          <h3>${p.title}</h3>\n          ${blurb}\n          <div class="actions"><a class="btn" href="${href}"${target}>${cta}</a></div>\n        </article>\n      `;
+    const blurb = p.blurb ? `<p>${p.blurb}</p>` : '';
+    // showCta: optional boolean flag on project entries. Default true.
+    const showCta = p.showCta === undefined ? true : Boolean(p.showCta);
+    const cta = p.cta ? p.cta : (external ? 'Visit site' : 'Details');
+    const actions = showCta ? `<div class="actions"><a class="btn" href="${href}"${target}>${cta}</a></div>` : '';
+  return `\n        <article class="card" data-href="${href}" tabindex="0">\n          <div class="logo-slot">${logoInner}</div>\n          <h3>${p.title}</h3>\n          ${blurb}\n          ${actions}\n        </article>\n      `;
     }).join('');
   }catch(e){ /* don't break the page if rendering fails */ }
 })();

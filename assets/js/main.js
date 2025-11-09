@@ -80,6 +80,27 @@ function resolveLogo(src){
   return assetsPath(`/assets/img/logos/${src}`);
 }
 
+// Detect when a logo value is raw HTML (for example an <i> icon or inline SVG)
+function isHtmlLogo(value){
+  return typeof value === 'string' && value.trim().startsWith('<');
+}
+
+// Return an HTML fragment to place inside the .logo-slot. If the provided
+// value is raw HTML we return it directly (useful for <i class="fa-...">).
+// Otherwise resolveLogo() is used to obtain an image src and an <img> tag
+// is returned. The `alt` argument is used for accessible <img> alternatives.
+function renderLogoFragment(logoValue, alt){
+  if(isHtmlLogo(logoValue)){
+    // When injecting raw HTML we mark it as presentational; the surrounding
+    // element can still provide accessible text if needed.
+    return `${logoValue}`;
+  }
+  const resolved = resolveLogo(logoValue);
+  const logoSrc = resolved ? resolved : `data:image/svg+xml,${placeholderSVG}`;
+  const logoAlt = alt ? alt : '';
+  return `<img alt="${logoAlt}" src="${logoSrc}">`;
+}
+
 // Companies + projects mapping (taken from the older index layout).
 const companies = [
   {
@@ -155,12 +176,11 @@ const companies = [
 const companyGrid = document.getElementById('companyGrid');
 if(companyGrid){
   companyGrid.innerHTML = companies.map(c=>{
-    const resolved = resolveLogo(c.logo);
-    const logoSrc = resolved ? resolved : `data:image/svg+xml,${placeholderSVG}`;
     const logoAlt = c.logo ? `${c.name} logo` : '';
+    const logoInner = renderLogoFragment(c.logo, logoAlt);
     return `
     <article class="card">
-      <div class="logo-slot"><img alt="${logoAlt}" src="${logoSrc}"></div>
+      <div class="logo-slot">${logoInner}</div>
       <h3>${c.name}</h3>
       <p>${c.blurb}</p>
       <div class="actions"><a class="btn" href="${c.href}">Learn More</a></div>
@@ -180,15 +200,14 @@ if(companyGrid){
     const grid = document.querySelector('main .section .grid') || document.querySelector('.grid');
     if(!grid) return;
     grid.innerHTML = company.projects.map(p => {
-      const resolved = resolveLogo(p.logo);
-      const logoSrc = resolved ? resolved : `data:image/svg+xml,${placeholderSVG}`;
       const logoAlt = p.logo ? `${p.title} logo` : '';
+      const logoInner = renderLogoFragment(p.logo, logoAlt);
       const href = p.href || '#';
       const external = /^https?:\/\//i.test(href);
       const target = external ? ' target="_blank" rel="noopener"' : '';
       const blurb = p.blurb ? `<p>${p.blurb}</p>` : '';
       const cta = p.cta ? p.cta : (external ? 'Visit site' : 'Details');
-      return `\n        <article class="card">\n          <div class="logo-slot"><img alt="${logoAlt}" src="${logoSrc}"></div>\n          <h3>${p.title}</h3>\n          ${blurb}\n          <div class="actions"><a class="btn" href="${href}"${target}>${cta}</a></div>\n        </article>\n      `;
+  return `\n        <article class="card">\n          <div class="logo-slot">${logoInner}</div>\n          <h3>${p.title}</h3>\n          ${blurb}\n          <div class="actions"><a class="btn" href="${href}"${target}>${cta}</a></div>\n        </article>\n      `;
     }).join('');
   }catch(e){ /* don't break the page if rendering fails */ }
 })();

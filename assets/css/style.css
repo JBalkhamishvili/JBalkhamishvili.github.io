@@ -64,6 +64,26 @@ body.pixel .theme-toggle{ animation: pj-pulse 2s ease-in-out infinite; }
 }
 .logo-slot img{max-width:70%;max-height:70%;object-fit:contain;filter: none}
 .logo-slot svg{width:32px;height:32px}
+/* Font icon / inline SVG styling for logo-slot: make icons white and sized consistently */
+.logo-slot i,
+.logo-slot svg,
+.logo-slot .fa,
+.logo-slot .fas,
+.logo-slot .fab,
+.logo-slot .far,
+.logo-slot .fal {
+  color: #fff;           /* make font icons white */
+  fill: currentColor;    /* make inline SVG follow currentColor */
+  font-size: 28px;       /* adjust icon size to fit the slot */
+  display: inline-block;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+/* Optional: if you want to invert certain raster images to white use this */
+.logo-slot img.invert-to-white {
+  filter: invert(1) grayscale(1) contrast(1.2);
+}
 .card h3{margin:0;font-size:1.1rem}
 .card p{margin:0;color:var(--muted)}
 .card .actions{margin-top:auto}

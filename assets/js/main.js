@@ -133,8 +133,8 @@ const companies = [
       { title: 'Brompton Bikes', href: 'https://www.brompton.com/', logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/Brompton_Logo_Triptych_Stacked_White_Screen.webp' },
       { title: 'Inventory Tool (Laravel/Orchid)', href: '#', logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/inventory.webp' },
       { title: 'Purify Digital', href: 'https://www.purifydigital.com/', logo: 'purify' },
-      { title: 'Flat rock Outsourcing', href: 'https://flatrockoutsourcing.com/', logo: 'flatsourcing' },
-      { title: 'Maison Chase', href: 'https://maisonchase.co.uk/' },
+    { title: 'Flat rock Outsourcing', href: 'https://flatrockoutsourcing.com/', logo: 'flatsourcing' },
+    { title: 'Maison Chase', href: 'https://maisonchase.co.uk/', logo: '<i class="fa-brands fa-wordpress"></i>' },
       { title: 'GPT Tips', href: 'https://gpt-tips.ai/' },
       { title: 'App Tipps', href: 'https://app-tipps.com/' }
     ]

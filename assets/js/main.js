@@ -136,7 +136,7 @@ const companies = [
   {
     slug: 'tipalti',
     name: 'Tipalti',
-    blurb: 'Full Stack Developer (2023–2025)',
+    blurb: 'Full-Stack Web Developer (2023 – 2025).',
     href: 'pages/company-tipalti.html',
     logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/tipalti_logo_white.webp',
     projects: [
@@ -188,6 +188,7 @@ const companies = [
       },
       {
         title: 'Inventory Tool (Laravel/Orchid)',
+        showCta: false,
         logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/Laravel.svg_-1.webp',
         blurb:
             'Internal asset management system built on Laravel + Orchid. Served as Tech Lead: domain modeling, RBAC, dashboards, and CRUD workflows for company hardware/software tracking.'
@@ -240,7 +241,22 @@ const companies = [
     href: 'pages/company-subtel.html',
     logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/subtel-logo.webp',
     projects: [
-      { title: 'subtel.de', href: 'https://www.subtel.de/' }
+      {
+        title: 'subtel.de (OXID eShop)',
+        href: 'https://www.subtel.de/',
+        // Replace with your hosted logo or remove this line
+        logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/subtel-logo.png',
+        blurb:
+            'E-commerce platform for batteries & accessories. Worked on OXID eShop (PHP/MySQL) backend & frontend—catalog/checkout features, marketplace integrations (Amazon/eBay/Google), and performance/stability fixes.'
+      },
+      {
+        title: 'Internal Product Tool (JavaScript)',
+        blurb:
+            'Internal tool for product management and data processing built in JavaScript. Automated imports/cleaning, bulk updates, and CSV/JSON exports—reducing manual work and errors.',
+        showCta: false,
+        // Optional placeholder; swap for your own or remove
+        logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/JavaScript-logo.webp'
+      }
     ]
   }
 ];

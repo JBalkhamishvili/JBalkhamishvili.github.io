@@ -15,10 +15,8 @@ function setTheme(name){
   try{ localStorage.setItem(key, name); }catch(e){ /* ignore storage errors */ }
 }
 
-// Force Clean theme on load (ignore any saved preference in localStorage).
-// This ensures the site always starts in Clean mode. The theme toggle will
-// still work during the session but will be overridden to Clean on the next load.
-setTheme('clean');
+// Apply stored theme; default to 'clean'
+setTheme(localStorage.getItem(key) || 'clean');
 if(toggle) toggle.addEventListener('click', ()=> setTheme(root.classList.contains('pixel') ? 'clean' : 'pixel'));
 
 // Burger (guarded)
@@ -31,6 +29,29 @@ if(burger && menu){
 // Year & back-to-top
 document.getElementById('y') && (document.getElementById('y').textContent = new Date().getFullYear());
 document.getElementById('toTop')?.addEventListener('click', e=>{ e.preventDefault(); scrollTo({top:0,behavior:'smooth'}); });
+
+// Contact: copy email button feedback
+const copyBtn = document.getElementById('copyEmail');
+if(copyBtn){
+  copyBtn.addEventListener('click', ()=>{
+    const email = copyBtn.getAttribute('data-email');
+    if(!email) return;
+    navigator.clipboard.writeText(email).then(()=>{
+      const original = copyBtn.innerHTML;
+      copyBtn.innerHTML = '<i class="fa-solid fa-check" aria-hidden="true"></i> Copied!';
+      copyBtn.classList.add('copied');
+      setTimeout(()=>{ copyBtn.innerHTML = original; copyBtn.classList.remove('copied'); }, 1800);
+    }).catch(()=>{
+      // Fallback: select text
+      const ta = document.createElement('textarea');
+      ta.value = email; document.body.appendChild(ta); ta.select();
+      try{ document.execCommand('copy'); }catch(e){ /* ignore */ }
+      document.body.removeChild(ta);
+      copyBtn.innerHTML = '<i class="fa-solid fa-check" aria-hidden="true"></i> Copied!';
+      setTimeout(()=>{ copyBtn.textContent = 'Copy email'; }, 1800);
+    });
+  });
+}
 
 // Placeholder SVG (data URI, pixel grid + invader)
 const placeholderSVG = encodeURIComponent(`
@@ -280,7 +301,7 @@ const companies = [
       {
         title: 'Inventory Tool (Laravel/Orchid)',
         showCta: false,
-        logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/Laravel.svg_-1.webp',
+        logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/Laravel.svg_.webp',
         blurb:
             'Internal asset management system built on Laravel + Orchid. Served as Tech Lead: domain modeling, RBAC, dashboards, and CRUD workflows for company hardware/software tracking.'
       },

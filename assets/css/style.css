@@ -55,11 +55,15 @@ body.pixel .theme-toggle{ animation: pj-pulse 2s ease-in-out infinite; }
 }
 
 /* Hero */
-.masthead{border-bottom:1px solid var(--line);padding:46px 0 30px;background:linear-gradient(180deg,rgba(122,92,255,.10),transparent 40%)}
+/* Clean theme keeps masthead minimal (no purple glow) */
+.masthead{border-bottom:1px solid var(--line);padding:46px 0 30px;background:none}
 .brand{font-size:clamp(28px,6vw,46px);margin:0 0 8px;font-weight:800;letter-spacing:.3px}
 .brand .pix{display:none}
 .tag{color:var(--muted);margin:0 0 18px}
 .hero .invaders{display:none}
+
+/* Headings: clean by default, pixel-mode adds the neon text-shadow */
+h1,h2,h3{ color:var(--text); text-shadow: none; }
 
 /* Sections + Grid */
 .section{padding:30px 0;border-top:1px solid var(--line)}
@@ -77,7 +81,7 @@ body.pixel .theme-toggle{ animation: pj-pulse 2s ease-in-out infinite; }
 .pixel-frame{width:260px;height:260px;padding:16px;border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;
   background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
   box-shadow: 0 10px 28px rgba(0,0,0,0.35); border:4px solid rgba(255,255,255,0.04);}
-.pixel-frame img{width:100%;height:100%;object-fit:contain;border-radius:10px;display:block;transform:scale(1.2);transform-origin:center center}
+.pixel-frame img{width:100%;height:100%;object-fit:cover;border-radius:10px;display:block;transform:scale(1.2);transform-origin:center center}
 
 /* Show the neon/pink outline only in Pixel mode */
 body.pixel .pixel-frame{ border-color: var(--pink); box-shadow: 0 8px 22px rgba(0,0,0,0.35), 0 0 18px rgba(122,92,255,0.06); }
@@ -103,6 +107,34 @@ body.pixel .pixel-cta{
   font-size:12px;
   color:var(--text);
   box-shadow: 0 6px 18px rgba(122,92,255,0.12);
+}
+
+/* Contact section: refined layout & actions */
+.contact-grid{display:grid;grid-template-columns:1fr 300px;gap:24px;align-items:start}
+.contact-card{background:var(--bg-elev);border:1px solid var(--line);padding:24px 24px 22px;border-radius:16px;display:flex;flex-direction:column;gap:10px}
+.contact-card .lead{margin:0;color:var(--text);line-height:1.55;font-size:1rem}
+.contact-actions{display:flex;flex-wrap:wrap;gap:12px;margin:8px 0 4px}
+.contact-actions .btn{display:inline-flex;align-items:center;gap:.55rem;padding:.65rem 1rem;border-radius:12px;border:1px solid var(--line);background:var(--bg-elev);color:var(--text);text-decoration:none;font-weight:600;font-size:.9rem;line-height:1.2}
+.contact-actions .btn i{font-size:1.05rem}
+.contact-actions .btn.primary{border-color:var(--brand);background:var(--brand);color:#04141c}
+.contact-actions .btn.primary:hover{filter:brightness(1.06)}
+.contact-actions .btn.ghost{background:transparent;border-color:var(--line)}
+.contact-actions .btn.ghost:hover{background:rgba(255,255,255,0.04)}
+.contact-utilities{display:flex;flex-direction:column;gap:14px}
+.socials.clean{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.socials.clean .icon{display:inline-flex;background:transparent;border:1px solid var(--line);border-radius:12px;padding:6px;transition:background .15s ease}
+.socials.clean .icon:hover{background:rgba(255,255,255,0.05)}
+.socials.clean .icon svg{width:30px;height:30px}
+.contact-meta .muted{color:var(--muted);margin:0;font-size:.85rem;line-height:1.3}
+@media (max-width: 780px){
+  .contact-grid{grid-template-columns:1fr;gap:18px}
+  .contact-utilities{order:2}
+  .contact-actions .btn{flex:1 1 140px;justify-content:center}
+}
+
+@media (max-width: 780px){
+  .contact-grid{grid-template-columns:1fr;}
+  .contact-utilities{order:-1}
 }
 
 @media (max-width: 780px){

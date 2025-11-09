@@ -70,14 +70,14 @@ body.pixel .theme-toggle{ animation: pj-pulse 2s ease-in-out infinite; }
 .about-photo img{width:clamp(120px,20vw,240px);height:auto;border-radius:12px;object-fit:cover;border:1px solid rgba(255,255,255,0.06);display:block}
 
 /* Two-column about layout (avatar + content) */
-.about-grid{display:grid;grid-template-columns:180px 1fr;gap:22px;align-items:center}
+.about-grid{display:grid;grid-template-columns:260px 1fr;gap:22px;align-items:center}
 .about-content p{margin-bottom:12px}
 
 /* Pixel-style framed avatar */
-.pixel-frame{width:180px;height:180px;padding:12px;border-radius:8px;display:flex;align-items:center;justify-content:center;
+.pixel-frame{width:260px;height:260px;padding:16px;border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;
   background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  box-shadow: 0 8px 22px rgba(0,0,0,0.35); border:4px solid rgba(255,255,255,0.04);}
-.pixel-frame img{width:100%;height:100%;object-fit:cover;border-radius:6px;display:block}
+  box-shadow: 0 10px 28px rgba(0,0,0,0.35); border:4px solid rgba(255,255,255,0.04);}
+.pixel-frame img{width:100%;height:100%;object-fit:contain;border-radius:10px;display:block;transform:scale(1.2);transform-origin:center center}
 
 /* Show the neon/pink outline only in Pixel mode */
 body.pixel .pixel-frame{ border-color: var(--pink); box-shadow: 0 8px 22px rgba(0,0,0,0.35), 0 0 18px rgba(122,92,255,0.06); }
@@ -107,7 +107,7 @@ body.pixel .pixel-cta{
 
 @media (max-width: 780px){
   .about-grid{grid-template-columns:1fr;gap:12px}
-  .pixel-frame{width:140px;height:140px;margin:0 auto}
+  .pixel-frame{width:180px;height:180px;margin:0 auto}
   .about-photo{order:-1}
   .pixel-cta{font-size:11px}
 }
@@ -153,8 +153,10 @@ body.pixel .pixel-cta{
 .card{
   transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
   will-change: transform, box-shadow;
-  cursor:default;
+  cursor:pointer;
 }
+.card a,
+.card button{ cursor: auto; }
 .card:hover,
 .card:focus-within{
   transform: translateY(-6px) scale(1.01);

@@ -179,7 +179,7 @@ if(companyGrid){
     const logoAlt = c.logo ? `${c.name} logo` : '';
     const logoInner = renderLogoFragment(c.logo, logoAlt);
     return `
-    <article class="card">
+    <article class="card" data-href="${c.href}" tabindex="0">
       <div class="logo-slot">${logoInner}</div>
       <h3>${c.name}</h3>
       <p>${c.blurb}</p>
@@ -207,7 +207,7 @@ if(companyGrid){
       const target = external ? ' target="_blank" rel="noopener"' : '';
       const blurb = p.blurb ? `<p>${p.blurb}</p>` : '';
       const cta = p.cta ? p.cta : (external ? 'Visit site' : 'Details');
-  return `\n        <article class="card">\n          <div class="logo-slot">${logoInner}</div>\n          <h3>${p.title}</h3>\n          ${blurb}\n          <div class="actions"><a class="btn" href="${href}"${target}>${cta}</a></div>\n        </article>\n      `;
+  return `\n        <article class="card" data-href="${href}" tabindex="0">\n          <div class="logo-slot">${logoInner}</div>\n          <h3>${p.title}</h3>\n          ${blurb}\n          <div class="actions"><a class="btn" href="${href}"${target}>${cta}</a></div>\n        </article>\n      `;
     }).join('');
   }catch(e){ /* don't break the page if rendering fails */ }
 })();
@@ -230,3 +230,32 @@ if(canvas){
   }
   addEventListener('resize', size); size(); loop();
 }
+
+// Make whole cards clickable: delegated handlers that navigate when a user
+// clicks or presses Enter/Space on a focused card. Inner links/buttons are
+// ignored so their default behaviour is preserved.
+document.addEventListener('click', function(e){
+  // only left-click
+  if(e.button && e.button !== 0) return;
+  const card = e.target.closest('.card');
+  if(!card) return;
+  // if user clicked a real control inside the card, don't hijack it
+  if(e.target.closest('a, button, input, textarea, select')) return;
+  const href = card.dataset.href;
+  if(!href || href === '#') return;
+  // respect modifier keys to open in new tab/window
+  if(e.metaKey || e.ctrlKey){ window.open(href, '_blank', 'noopener'); return; }
+  // external URLs open in new tab, internal navigate in same tab
+  if(/^https?:\/\//i.test(href)) window.open(href, '_blank', 'noopener'); else location.href = href;
+});
+
+document.addEventListener('keydown', function(e){
+  if(e.key !== 'Enter' && e.key !== ' ') return;
+  const active = document.activeElement;
+  if(!active || !active.classList.contains('card')) return;
+  // space should not scroll the page when used to activate the card
+  if(e.key === ' ') e.preventDefault();
+  const href = active.dataset.href;
+  if(!href || href === '#') return;
+  if(/^https?:\/\//i.test(href)) window.open(href, '_blank', 'noopener'); else location.href = href;
+});

@@ -44,11 +44,17 @@ a{color:var(--brand)} a:hover{text-decoration:underline}
 @media (prefers-reduced-motion: reduce){ .theme-toggle{ animation: none; } }
 /* Stronger pulse in Pixel mode (≈5–10% more pronounced via scale & shadow) */
 @keyframes pj-pulse-pixel {
-  0% { box-shadow: 0 0 0 0 rgba(0,230,255,0.0); transform: translateY(0) scale(1); }
-  50% { box-shadow: 0 0 13px 6.5px rgba(0,230,255,0.10); transform: translateY(-1px) scale(1.05); }
-  100% { box-shadow: 0 0 0 0 rgba(0,230,255,0.0); transform: translateY(0) scale(1); }
+  /* Idle state shows a subtle glow so the toggle appears lit before interaction */
+  0% { box-shadow: 0 0 6px 3px rgba(0,230,255,0.08); transform: translateY(0) scale(1); }
+  50% { box-shadow: 0 0 20px 10px rgba(0,230,255,0.18); transform: translateY(-1px) scale(1.08); }
+  100% { box-shadow: 0 0 6px 3px rgba(0,230,255,0.08); transform: translateY(0) scale(1); }
 }
 body.pixel .theme-toggle{ animation: pj-pulse-pixel 2s ease-in-out infinite; }
+
+/* Give the inner dot a soft glow in Pixel mode so the toggle reads as "on" even at rest */
+body.pixel .theme-toggle .dot{
+  box-shadow: 0 0 8px 3px rgba(0,230,255,0.14), 0 0 18px 6px rgba(122,92,255,0.06);
+}
 
 /* Center the theme toggle on small screens so it doesn't overlap the burger/menu */
 @media (max-width: 780px){

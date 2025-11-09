@@ -136,34 +136,107 @@ const companies = [
   {
     slug: 'tipalti',
     name: 'Tipalti',
-    blurb: 'Backend work (2023–2025)',
+    blurb: 'Full Stack Developer (2023–2025)',
     href: 'pages/company-tipalti.html',
     logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/tipalti_logo_white.webp',
     projects: [
-      { title: 'Tipalti (website)', href: 'https://tipalti.com/' }
+      {
+        title: 'Tipalti (Website)',
+        href: 'https://tipalti.com/',
+        blurb:
+            'Core contributor on the v4→v5 redesign of tipalti.com. Built custom Gutenberg blocks, plugins and shortcodes, implemented Canada/Germany localizations, and occasionally drove releases. Focus areas: performance, accessibility, and maintainable WordPress architecture.',
+        logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/tipalti_logo_white.webp'
+      },
+      {
+        title: 'MATRIX — Headless WordPress',
+        href: 'https://tipalti.com/',
+        blurb:
+            'Designed and built a headless WordPress platform for content teams (Marketing Tools, Resources & Intelligent Extensions). Centralized creation of comparison tables, carousels and client logos, and exposed them via API to the main site. Added a site-wide indexed search to quickly locate pages/posts by content, reducing duplicate work.',
+        logo: '<i class="fa-brands fa-wordpress"></i>',
+        showCta: false
+      },
+      {
+        title: 'QA & Release Workflow — Playwright',
+        blurb:
+            'Introduced an automated QA workflow with Playwright to support weekly releases. Set up stable E2E/regression suites plus a lightweight manual checklist for edge cases. Integrated into CI to flag regressions early and reduce rollback risk.',
+        showCta: false,
+        logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/playwright-1.webp'
+      }
     ]
+
   },
   {
     slug: 'flatrock',
     name: 'Flatrock Technology',
-    blurb: 'Projects 2021–2023 (Laravel, WordPress)',
+    blurb: 'Working on several Projects over the years as a Backend Developer  2021–2023 (Laravel, WordPress)',
     href: 'pages/company-flatrock.html',
     logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/flatrock-logo.webp',
     projects: [
-      { title: 'Marshal' , logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/laravel_vue.webp', blurb: "The Marshal project, was a project for HR's (some kind of LinkedIn clone) where I developed some components with Laravel & Vue.js", showCta: false },
-      { title: 'Brompton Bikes', href: 'https://www.brompton.com/', logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/Brompton_Logo_Triptych_Stacked_White_Screen.webp' , blurb: 'For this project I was involved in the Magento Team Backend Development'},
-      { title: 'Inventory Tool (Laravel/Orchid)', logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/Laravel.svg_-1.webp', blurb: 'For this Laravel Inventory System project I was the Tech Lead, it is Based on Laravel and Laravel/Orchid and is basically the inventory tool for the company to organize all tech equiment' },
-      { title: 'Purify Digital', href: 'https://www.purifydigital.com/', logo: 'purify', blurb: 'For this WordPress Project, I was involved as the Tech Lead and was also working on the Back End' },
-      { title: 'Flat rock Outsourcing', href: 'https://flatrockoutsourcing.com/', logo: 'flatsourcing', blurb: 'For this WordPress Project, I was involved as the Tech Lead and was also working on the Back End' },
-      { title: 'Maison Chase', href: 'https://maisonchase.co.uk/', logo: '<i class="fa-brands fa-wordpress"></i>', blurb: 'For this WordPress Project, I was involved working on the Back End, unfortunatly it looks like it was not continued after some years when i left', showCta: false  },
-      { title: 'GPT Tips', href: 'https://gpt-tips.ai/', logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/gpt-tips.webp', blurb: 'For this WordPress Project, I was involved working on the Back End' },
-      { title: 'App Tipps', href: 'https://app-tipps.com/', blurb: 'For this WordPress Project, I was involved working on the Back End', logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/app-tipps-logo-domain.webp' }
+      {
+        title: 'Marshal (Laravel + Vue)',
+        logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/laravel_vue.webp',
+        blurb:
+            'HR web platform (LinkedIn-style) built with Laravel and Vue. Implemented reusable UI components, REST endpoints, and robust form validation. Collaborated on auth, profiles, and content workflows.',
+        showCta: false
+      },
+      {
+        title: 'Brompton Bikes (Magento)',
+        href: 'https://www.brompton.com/',
+        logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/Brompton_Logo_Triptych_Stacked_White_Screen.webp',
+        blurb:
+            'Part of the Magento backend team. Contributed to catalog and order flows, third-party integrations, and performance/stability fixes for production releases.'
+      },
+      {
+        title: 'Inventory Tool (Laravel/Orchid)',
+        logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/Laravel.svg_-1.webp',
+        blurb:
+            'Internal asset management system built on Laravel + Orchid. Served as Tech Lead: domain modeling, RBAC, dashboards, and CRUD workflows for company hardware/software tracking.'
+      },
+      {
+        title: 'Purify Digital (WordPress)',
+        href: 'https://www.purifydigital.com/',
+        // REPLACE with a real logo URL hosted on your server:
+        logo: 'purify',
+        blurb:
+            'Tech Lead for a WordPress marketing site. Delivered a custom theme with block-based templates, performance tuning, and clean editorial workflows.'
+      },
+      {
+        title: 'Flat Rock Outsourcing (WordPress)',
+        href: 'https://flatrockoutsourcing.com/',
+        // REPLACE with a real logo URL hosted on your server:
+        logo: 'flatsourcing',
+        blurb:
+            'Led WordPress development for the corporate site. Built Gutenberg components, streamlined page building, and improved lighthouse/performance scores.'
+      },
+      {
+        title: 'Maison Chase (WordPress)',
+        href: 'https://maisonchase.co.uk/',
+        // REPLACE with a real logo URL; avoid <i> tags:
+        logo: '<i class="fa-brands fa-wordpress"></i>',
+        blurb:
+            'Backend development on a custom WordPress build (theme + plugins). Implemented content types and admin tooling; the project was later discontinued by the client.',
+        showCta: false
+      },
+      {
+        title: 'GPT Tips (WordPress)',
+        href: 'https://gpt-tips.ai/',
+        logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/gpt-tips.webp',
+        blurb:
+            'Backend work for a content site. Added custom post types, metadata/SEO structures, and publisher-friendly editor features.'
+      },
+      {
+        title: 'App Tipps (WordPress)',
+        href: 'https://app-tipps.com/',
+        logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/app-tipps-logo-domain.webp',
+        blurb:
+            'WordPress backend development for an app-review site. Delivered data models, editorial flows, and structured data to support search visibility.'
+      }
     ]
   },
   {
     slug: 'subtel',
     name: 'Subtel GmbH',
-    blurb: 'Online Shop based on OXID eShop - (2019–2020)',
+    blurb: 'Working on the subtel Online Shop based on OXID eShop - (2019–2020)',
     href: 'pages/company-subtel.html',
     logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/subtel-logo.webp',
     projects: [

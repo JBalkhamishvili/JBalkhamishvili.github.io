@@ -52,16 +52,26 @@ const placeholderSVG = encodeURIComponent(`
   </g>
 </svg>`);
 
+function resolveLogo(src){
+  if(!src) return null;
+  // already absolute
+  if(/^https?:\/\//i.test(src) || src.startsWith('/')) return src;
+  // short name without extension -> use .svg in logos folder
+  if(!src.includes('.')) return `/assets/img/logos/${src}.svg`;
+  // filename with extension but not root-relative -> prefix logos folder
+  return `/assets/img/logos/${src}`;
+}
+
 // Companies + projects mapping (taken from the older index layout).
 const companies = [
   {
     slug: 'freelancer',
-    name: 'Freelancer',
-    blurb: 'Freelance projects since Nov 2020',
+    name: 'Freelance & Personal Projects',
+    blurb: 'Freelance & Personal Projects since Nov 2020',
     href: 'pages/company-freelancer.html',
     logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/freelancer_logo.webp',
     projects: [
-      { title: 'PixelTCG — Pokémon TCG Store', href: 'pages/case-pixeltcg.html' },
+      { title: 'PixelTCG — Pokémon TCG Store', href: 'pages/case-pixeltcg.html'},
       { title: 'Eka Peradze Art', href: 'pages/project-eka.html' },
       { title: 'Eka Peradze Art — Second Shop', href: 'pages/project-eka2.html' },
       { title: 'Burkhart', href: 'pages/project-burkhart.html' },
@@ -101,7 +111,7 @@ const companies = [
     href: 'pages/company-flatrock.html',
     logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/flatrock-logo.webp',
     projects: [
-      { title: 'Marshal', href: 'https://marshalhr.com/' },
+      { title: 'Marshal', href: 'https://marshalhr.com/' , logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/flatrock-logo.webp', },
       { title: 'Brompton Bikes', href: 'https://www.brompton.com/' },
       { title: 'Inventory Tool (Laravel/Orchid)', href: '#' },
       { title: 'Purify Digital', href: 'https://www.purifydigital.com/' },
@@ -127,7 +137,8 @@ const companies = [
 const companyGrid = document.getElementById('companyGrid');
 if(companyGrid){
   companyGrid.innerHTML = companies.map(c=>{
-    const logoSrc = c.logo ? c.logo : `data:image/svg+xml,${placeholderSVG}`;
+    const resolved = resolveLogo(c.logo);
+    const logoSrc = resolved ? resolved : `data:image/svg+xml,${placeholderSVG}`;
     const logoAlt = c.logo ? `${c.name} logo` : '';
     return `
     <article class="card">
@@ -140,7 +151,7 @@ if(companyGrid){
   }).join('');
 }
 
-// Dynamic rendering of project lists on company pages (supports per-project logos)
+// Render project cards on company pages and support per-project logos (resolved via resolveLogo)
 (function renderCompanyProjects(){
   try{
     const m = location.pathname.match(/company-([a-z0-9-]+)\.html$/i);
@@ -151,7 +162,8 @@ if(companyGrid){
     const grid = document.querySelector('main .section .grid') || document.querySelector('.grid');
     if(!grid) return;
     grid.innerHTML = company.projects.map(p => {
-      const logoSrc = p.logo ? p.logo : `data:image/svg+xml,${placeholderSVG}`;
+      const resolved = resolveLogo(p.logo);
+      const logoSrc = resolved ? resolved : `data:image/svg+xml,${placeholderSVG}`;
       const logoAlt = p.logo ? `${p.title} logo` : '';
       const href = p.href || '#';
       const external = /^https?:\/\//i.test(href);

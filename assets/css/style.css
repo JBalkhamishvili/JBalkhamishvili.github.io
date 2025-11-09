@@ -44,6 +44,16 @@ a{color:var(--brand)} a:hover{text-decoration:underline}
 @media (prefers-reduced-motion: reduce){ .theme-toggle{ animation: none; } }
 body.pixel .theme-toggle{ animation: pj-pulse 2s ease-in-out infinite; }
 
+/* Center the theme toggle on small screens so it doesn't overlap the burger/menu */
+@media (max-width: 780px){
+  .theme-toggle{
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 12; /* ensure it sits above the nav/menu */
+  }
+}
+
 /* Hero */
 .masthead{border-bottom:1px solid var(--line);padding:46px 0 30px;background:linear-gradient(180deg,rgba(122,92,255,.10),transparent 40%)}
 .brand{font-size:clamp(28px,6vw,46px);margin:0 0 8px;font-weight:800;letter-spacing:.3px}
@@ -54,6 +64,54 @@ body.pixel .theme-toggle{ animation: pj-pulse 2s ease-in-out infinite; }
 /* Sections + Grid */
 .section{padding:30px 0;border-top:1px solid var(--line)}
 .grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+
+/* About section photo */
+.about-photo{display:flex;justify-content:center;margin:14px 0}
+.about-photo img{width:clamp(120px,20vw,240px);height:auto;border-radius:12px;object-fit:cover;border:1px solid rgba(255,255,255,0.06);display:block}
+
+/* Two-column about layout (avatar + content) */
+.about-grid{display:grid;grid-template-columns:180px 1fr;gap:22px;align-items:center}
+.about-content p{margin-bottom:12px}
+
+/* Pixel-style framed avatar */
+.pixel-frame{width:180px;height:180px;padding:12px;border-radius:8px;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  box-shadow: 0 8px 22px rgba(0,0,0,0.35); border:4px solid rgba(255,255,255,0.04);}
+.pixel-frame img{width:100%;height:100%;object-fit:cover;border-radius:6px;display:block}
+
+/* Show the neon/pink outline only in Pixel mode */
+body.pixel .pixel-frame{ border-color: var(--pink); box-shadow: 0 8px 22px rgba(0,0,0,0.35), 0 0 18px rgba(122,92,255,0.06); }
+
+/* CTA: clean by default, pixel-styled in Pixel theme */
+.pixel-cta{
+  display:inline-block;
+  padding:.6rem .9rem;
+  border-radius:8px;
+  border:1px solid var(--line);
+  color:var(--text);
+  background:transparent;
+  text-decoration:none;
+  font-family:inherit;
+  font-size:14px;
+}
+.pixel-cta:hover{ box-shadow: 0 6px 18px rgba(0,0,0,0.16); }
+
+/* Pixel-mode override: switch to pixel font and neon outline */
+body.pixel .pixel-cta{
+  border:3px solid var(--pink);
+  font-family: "Press Start 2P", monospace;
+  font-size:12px;
+  color:var(--text);
+  box-shadow: 0 6px 18px rgba(122,92,255,0.12);
+}
+
+@media (max-width: 780px){
+  .about-grid{grid-template-columns:1fr;gap:12px}
+  .pixel-frame{width:140px;height:140px;margin:0 auto}
+  .about-photo{order:-1}
+  .pixel-cta{font-size:11px}
+}
+
 
 /* Icon-first Card */
 .card{border:1px solid var(--line);border-radius:14px;background:var(--bg-elev);padding:18px 18px 16px;display:flex;flex-direction:column;gap:12px}

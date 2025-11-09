@@ -157,7 +157,7 @@ const companies = [
     { title: 'Flat rock Outsourcing', href: 'https://flatrockoutsourcing.com/', logo: 'flatsourcing' },
     { title: 'Maison Chase', href: 'https://maisonchase.co.uk/', logo: '<i class="fa-brands fa-wordpress"></i>' },
       { title: 'GPT Tips', href: 'https://gpt-tips.ai/' },
-      { title: 'App Tipps', href: 'https://app-tipps.com/' }
+      { title: 'App Tipps', href: 'https://app-tipps.com/', blurb: 'A German-language site about AI apps', logo: '<i class="fa-brands fa-wordpress"></i>' }
     ]
   },
   {

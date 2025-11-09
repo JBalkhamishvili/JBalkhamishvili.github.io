@@ -32,6 +32,18 @@ a{color:var(--brand)} a:hover{text-decoration:underline}
 .theme-toggle .label{font-size:.9rem}
 .theme-toggle .dot{width:10px;height:10px;border-radius:50%;background:var(--brand)}
 
+/* Pulse animation for theme toggle — subtle by default, stronger in Pixel mode */
+@keyframes pj-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(0,230,255,0.0); transform: translateY(0); }
+  50% { box-shadow: 0 0 12px 6px rgba(0,230,255,0.06); transform: translateY(-1px); }
+  100% { box-shadow: 0 0 0 0 rgba(0,230,255,0.0); transform: translateY(0); }
+}
+.theme-toggle{
+  animation: pj-pulse 2.8s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce){ .theme-toggle{ animation: none; } }
+body.pixel .theme-toggle{ animation: pj-pulse 2s ease-in-out infinite; }
+
 /* Hero */
 .masthead{border-bottom:1px solid var(--line);padding:46px 0 30px;background:linear-gradient(180deg,rgba(122,92,255,.10),transparent 40%)}
 .brand{font-size:clamp(28px,6vw,46px);margin:0 0 8px;font-weight:800;letter-spacing:.3px}

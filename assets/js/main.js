@@ -59,7 +59,7 @@ const companies = [
     name: 'Freelancer',
     blurb: 'Freelance projects since Nov 2020',
     href: 'pages/company-freelancer.html',
-    logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/freelance-logo.webp',
+    logo: 'https://pixeltcg.net/wp-content/uploads/2025/11/freelancer_logo.webp',
     projects: [
       { title: 'PixelTCG — Pokémon TCG Store', href: 'pages/case-pixeltcg.html' },
       { title: 'Eka Peradze Art', href: 'pages/project-eka.html' },
@@ -139,6 +139,29 @@ if(companyGrid){
     `;
   }).join('');
 }
+
+// Dynamic rendering of project lists on company pages (supports per-project logos)
+(function renderCompanyProjects(){
+  try{
+    const m = location.pathname.match(/company-([a-z0-9-]+)\.html$/i);
+    if(!m) return;
+    const slug = m[1];
+    const company = companies.find(c => c.slug === slug);
+    if(!company) return;
+    const grid = document.querySelector('main .section .grid') || document.querySelector('.grid');
+    if(!grid) return;
+    grid.innerHTML = company.projects.map(p => {
+      const logoSrc = p.logo ? p.logo : `data:image/svg+xml,${placeholderSVG}`;
+      const logoAlt = p.logo ? `${p.title} logo` : '';
+      const href = p.href || '#';
+      const external = /^https?:\/\//i.test(href);
+      const target = external ? ' target="_blank" rel="noopener"' : '';
+      const blurb = p.blurb ? `<p>${p.blurb}</p>` : '';
+      const cta = p.cta ? p.cta : (external ? 'Visit site' : 'Details');
+      return `\n        <article class="card">\n          <div class="logo-slot"><img alt="${logoAlt}" src="${logoSrc}"></div>\n          <h3>${p.title}</h3>\n          ${blurb}\n          <div class="actions"><a class="btn" href="${href}"${target}>${cta}</a></div>\n        </article>\n      `;
+    }).join('');
+  }catch(e){ /* don't break the page if rendering fails */ }
+})();
 
 // Starfield (Pixel mode only) — only initialise when the canvas exists
 const canvas = document.getElementById('stars');

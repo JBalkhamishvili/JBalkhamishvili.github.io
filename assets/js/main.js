@@ -138,7 +138,7 @@ const companies = [
         title: 'PixelTCG — Pokémon TCG Store (Personal)',
         href: 'https://pixeltcg.net/',
         blurb:
-            'My own WooCommerce store built from zero with a custom Astra child theme. I handle everything: custom plugins (incl. ACF, USD→GEL via NBG API), SEO (schema, metadata, internal linking), content creation, cusotm gutenberg blocks and performance tuning (fast Lighthouse scores). Goal: rank competitively on Google with clean UX and maintainable code.',
+            'My own WooCommerce store built from zero with a custom Astra child theme. I handle everything: custom plugins (incl. ACF, USD→GEL via NBG API), SEO (schema, metadata, internal linking), content creation, custom gutenberg blocks and performance tuning (fast Lighthouse scores). Goal: rank competitively on Google with clean UX and maintainable code.',
         logo: 'https://pixeltcg.net/wp-content/uploads/2025/06/ChatGPT-Image-Jun-2-2025-07_30_59-PM.webp'
       },
       {
